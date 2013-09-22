@@ -49,6 +49,18 @@ void flash_bar()
 	all_bar(HIGH);
 }
 
+void strobe_bar()
+{
+	// Change all bar graph LEDs
+	for(int pin=LOW_PIN; pin<=TOP_PIN; pin++)
+	{
+		delay(BRIEF);
+		digitalWrite(pin, HIGH);
+		digitalWrite(pin-1, LOW);
+	}
+	digitalWrite(TOP_PIN, LOW);
+}
+
 void loop()
 {
 	switch_val = digitalRead(SWITCH);	
@@ -63,6 +75,8 @@ void loop()
 			flash_bar();
 			flash_bar();
 			flash_bar();
+			strobe_bar();
+			next_pin = LOW_PIN;
 		}
 		
 		// Going up...
