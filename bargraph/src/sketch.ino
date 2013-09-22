@@ -23,14 +23,12 @@ void setup()
 
 void do_work()
 {
-
+	val = digitalRead(SWITCH);	
+	Serial.println(val);
 }
 
 void loop()
 {
-
-	val = digitalRead(SWITCH);	
-	Serial.println(val);
 
 	digitalWrite(LED_PIN, HIGH);
     delay(100);
@@ -38,12 +36,14 @@ void loop()
 
 	for(int pin=LOW_PIN; pin<=TOP_PIN; pin++)
 	{
+		do_work();
 		digitalWrite(pin, HIGH);
 		delay(900);
 	}
 
 	for(int pin=TOP_PIN; pin>=LOW_PIN; pin--)
 	{
+		do_work();
 		digitalWrite(pin, LOW);
 		delay(100);
 	}
