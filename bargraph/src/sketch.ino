@@ -3,7 +3,7 @@
 # define LOW_PIN 3
 # define TOP_PIN 12
 
-# define SWITCH 14
+# define SWITCH 2
 int val = 0;
 
 void setup()
@@ -14,16 +14,22 @@ void setup()
 	{
 		pinMode(pin, OUTPUT);
 	}
+	pinMode(SWITCH, INPUT);
 
 	Serial.begin(9600);
 
 	
 }
 
+void do_work()
+{
+
+}
+
 void loop()
 {
 
-	val = analogRead(SWITCH);	
+	val = digitalRead(SWITCH);	
 	Serial.println(val);
 
 	digitalWrite(LED_PIN, HIGH);
