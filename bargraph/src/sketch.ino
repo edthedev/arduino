@@ -45,9 +45,9 @@ void all_bar(int high_or_low)
 void flash_bar()
 {
 	delay(QUICK);
-	all_bar(LOW);
-	delay(BRIEF);
 	all_bar(HIGH);
+	delay(BRIEF);
+	all_bar(LOW);
 }
 
 void strobe_bar()
