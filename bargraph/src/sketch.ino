@@ -62,10 +62,22 @@ void strobe_bar()
 	digitalWrite(TOP_PIN, LOW);
 }
 
-void show_score_bar(score)
+void show_score_bar(int my_score)
 {
-
+	// Display score as a binary gradient...
+	for(int pin=LOW_PIN; pin<=TOP_PIN; pin++)
+	{
+		my_score--;
+		if(my_score > 0)
+		{
+			digitalWrite(pin, HIGH);
+		}
+	}
+	delay(BRIEF);
+	all_bar(LOW);
 }
+
+int score = 0;
 
 void loop()
 {
@@ -87,6 +99,9 @@ void loop()
 			flash_bar();
 			strobe_bar();
 			next_pin = LOW_PIN - 1;
+			score++;
+			show_score_bar(score);
+//TODO: Add some major fireworks when score == max, and then reset score.
 		}
 		
 		next_pin++;
