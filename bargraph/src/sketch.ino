@@ -3,6 +3,9 @@
 # define LOW_PIN 3
 # define TOP_PIN 12
 
+# define LONG 1000
+# define BRIEF 100
+
 # define SWITCH 2
 
 void setup()
@@ -29,6 +32,23 @@ int val = 0;
 int switch_val = 0;
 int next_pin = 0;
 
+void all_bar(int high_or_low)
+{
+	// Change all bar graph LEDs
+	for(int pin=LOW_PIN; pin<=TOP_PIN; pin++)
+	{
+		digitalWrite(pin, high_or_low);
+	}
+}
+
+void flash_bar()
+{
+	delay(BRIEF);
+	all_bar(LOW);
+	delay(BRIEF);
+	all_bar(HIGH);
+}
+
 void loop()
 {
 	switch_val = digitalRead(SWITCH);	
@@ -36,6 +56,16 @@ void loop()
 
 	if(switch_val)
 	{
+
+		if(next_pin == TOP_PIN)
+		{
+			flash_bar();
+			flash_bar();
+			flash_bar();
+			flash_bar();
+		}
+		
+		// Going up...
 		digitalWrite(next_pin, HIGH);
 		next_pin++;
 		if(next_pin > TOP_PIN)
@@ -45,6 +75,7 @@ void loop()
 	}
 	else
 	{
+		// Going down...
 		digitalWrite(next_pin, LOW);
 		next_pin--;
 		if(next_pin < LOW_PIN)
@@ -52,10 +83,10 @@ void loop()
 			next_pin = LOW_PIN;
 		}
 	}
-	delay(100);
 
+	delay(BRIEF);
 	digitalWrite(LED_PIN, HIGH);
-    delay(100);
+	delay(BRIEF);
 	digitalWrite(LED_PIN, LOW);
 
 	}
