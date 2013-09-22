@@ -44,7 +44,7 @@ void all_bar(int high_or_low)
 
 void flash_bar()
 {
-	delay(BRIEF);
+	delay(QUICK);
 	all_bar(LOW);
 	delay(BRIEF);
 	all_bar(HIGH);
@@ -67,11 +67,11 @@ void show_score_bar(int my_score)
 	// Display score as a binary gradient...
 	for(int pin=LOW_PIN; pin<=TOP_PIN; pin++)
 	{
-		my_score--;
 		if(my_score > 0)
 		{
 			digitalWrite(pin, HIGH);
 		}
+		my_score--;
 	}
 	delay(BRIEF);
 	all_bar(LOW);
@@ -93,7 +93,6 @@ void loop()
 		// Celebrate!!
 		if(next_pin == TOP_PIN)
 		{
-			flash_bar();
 			flash_bar();
 			flash_bar();
 			flash_bar();
