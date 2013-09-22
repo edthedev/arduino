@@ -4,7 +4,8 @@
 # define TOP_PIN 12
 
 # define LONG 1000
-# define BRIEF 100
+# define BRIEF 500
+# define QUICK 100
 
 # define SWITCH 2
 
@@ -54,11 +55,16 @@ void strobe_bar()
 	// Change all bar graph LEDs
 	for(int pin=LOW_PIN; pin<=TOP_PIN; pin++)
 	{
-		delay(BRIEF);
+		delay(QUICK);
 		digitalWrite(pin, HIGH);
 		digitalWrite(pin-1, LOW);
 	}
 	digitalWrite(TOP_PIN, LOW);
+}
+
+void show_score_bar(score)
+{
+
 }
 
 void loop()
@@ -69,6 +75,10 @@ void loop()
 	if(switch_val)
 	{
 
+		// Going up...
+		digitalWrite(next_pin, HIGH);
+
+		// Celebrate!!
 		if(next_pin == TOP_PIN)
 		{
 			flash_bar();
@@ -76,11 +86,9 @@ void loop()
 			flash_bar();
 			flash_bar();
 			strobe_bar();
-			next_pin = LOW_PIN;
+			next_pin = LOW_PIN - 1;
 		}
 		
-		// Going up...
-		digitalWrite(next_pin, HIGH);
 		next_pin++;
 		if(next_pin > TOP_PIN)
 		{
@@ -98,9 +106,9 @@ void loop()
 		}
 	}
 
-	delay(BRIEF);
+	delay(QUICK);
 	digitalWrite(LED_PIN, HIGH);
-	delay(BRIEF);
+	delay(QUICK);
 	digitalWrite(LED_PIN, LOW);
 
 	}
