@@ -2,6 +2,10 @@
 # define LED_PIN 13
 # define LOW_PIN 3
 # define TOP_PIN 12
+
+# define SWITCH 14
+int val = 0;
+
 void setup()
 {
 	pinMode(LED_PIN, OUTPUT);
@@ -10,10 +14,18 @@ void setup()
 	{
 		pinMode(pin, OUTPUT);
 	}
+
+	Serial.begin(9600);
+
+	
 }
 
 void loop()
 {
+
+	val = analogRead(SWITCH);	
+	Serial.println(val);
+
 	digitalWrite(LED_PIN, HIGH);
     delay(100);
 	digitalWrite(LED_PIN, LOW);
