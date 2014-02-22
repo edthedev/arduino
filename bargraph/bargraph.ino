@@ -32,12 +32,11 @@ pinMode(13, OUTPUT);
 }
 void loop()
 {
-	foreach(const int *p, bar_pins)
+	foreach(const int *pin, bar_pins)
 	{
-		int pin = *p;
-		digitalWrite(pin, LOW);
+		digitalWrite(*pin, LOW);
 		delay(mydelay);
-		digitalWrite(pin, HIGH);
+		digitalWrite(*pin, HIGH);
 	}
 
 }
