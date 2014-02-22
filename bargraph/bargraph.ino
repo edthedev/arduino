@@ -36,7 +36,12 @@ void loop()
 	{
 		digitalWrite(*pin, LOW);
 		delay(mydelay);
+	}
+
+	foreach(const int *pin, bar_pins)
+	{
 		digitalWrite(*pin, HIGH);
+		delay(mydelay);
 	}
 
 }
