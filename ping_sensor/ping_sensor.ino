@@ -69,7 +69,7 @@ long duration, inches, cm;
 	// Turn em off.
 	foreach(const int *pin, bar_pins)
 	{
-		digitalWrite(*pin, LOW);
+		digitalWrite(*pin, HIGH);
 	}
 
 	// Turn some back on.
@@ -77,9 +77,8 @@ long duration, inches, cm;
 	{
 		if(duration > *pin * 100)
 		{
-			digitalWrite(*pin, HIGH);
+			digitalWrite(*pin, LOW);
 		}
-		delay(tiny_delay);
 	}
 
 
