@@ -4,24 +4,20 @@
 // initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 
-
 int values[4];
-int pin[4];
+int pin[] = {1,2,3,4,5,6,7,8,9};
+int pin_size = sizeof(pin) / sizeof(pin[0]);
 
 void setup() {
 	lcd.begin(16, 2);
+	// lcd.print('.');
+	lcd.print(pin_size);
 
-	pinMode(A1, OUTPUT);
-
-	pin[0] = A2;
-	pin[1] = A3;
-	pin[2] = A4;
-
-    for(int i=0; i<5; i++)
-	{
-		pinMode(pin[i], INPUT);
-	}
-
+    // for(int i=0; i < pin_size; i++)
+	// {
+ 	//	pinMode(pin[i], INPUT);
+ 	//}
+	lcd.print('..');
 }
 
 void loop() {
@@ -29,11 +25,12 @@ void loop() {
 	digitalWrite(A1, HIGH);
 	pinMode(A1, INPUT);
 
-    for(int i=0; i<5; i++)
+    for(int i=0; i < pin_size; i++)
 	{
 		lcd.setCursor(i, 0);
 		int my_value = digitalRead(pin[i]);
 		lcd.print(my_value);
+		lcd.print("A");
 	}
 	lcd.setCursor(0, 1);
 	lcd.print(millis()/1000);
