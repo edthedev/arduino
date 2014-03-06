@@ -1,59 +1,59 @@
 /*
-  LiquidCrystal Library - Hello World
- 
- Demonstrates the use a 16x2 LCD display.  The LiquidCrystal
- library works with all LCD displays that are compatible with the 
- Hitachi HD44780 driver. There are many of them out there, and you
- can usually tell them by the 16-pin interface.
- 
- This sketch prints "Hello World!" to the LCD
- and shows the time.
- 
-  The circuit:
- * LCD RS pin to digital pin 12
- * LCD Enable pin to digital pin 11
- * LCD D4 pin to digital pin 5
- * LCD D5 pin to digital pin 4
- * LCD D6 pin to digital pin 3
- * LCD D7 pin to digital pin 2
- * LCD R/W pin to ground
- * 10K resistor:
- * ends to +5V and ground
- * wiper to LCD VO pin (pin 3)
- 
- Library originally added 18 Apr 2008
- by David A. Mellis
- library modified 5 Jul 2009
- by Limor Fried (http://www.ladyada.net)
- example added 9 Jul 2009
- by Tom Igoe
- modified 22 Nov 2010
- by Tom Igoe
- 
- This example code is in the public domain.
+** Example Arduino sketch for SainSmart I2C LCD Screen 16x2
+** based on https://bitbucket.org/celem/sainsmart-i2c-lcd/src/3adf8e0d2443/sainlcdtest.ino
+** by
+** Edward Comer
+** LICENSE: GNU General Public License, version 3 (GPL-3.0)
 
- http://www.arduino.cc/en/Tutorial/LiquidCrystal
- */
+** This example uses F Malpartida's NewLiquidCrystal library. Obtain from:
+** https://bitbucket.org/fmalpartida/new-liquidcrystal 
 
-// include the library code:
+** Modified – Ian Brennan ianbren at hotmail.com 23-10-2012 to support Tutorial posted to Arduino.cc
+
+** Written for and tested with Arduino 1.0
+**
+** NOTE: Tested on Arduino Uno whose I2C pins are A4==SDA, A5==SCL
+
+*/
 #include <Wire.h>
-#include <LiquidCrystal.h>
+#include <LCD.h>
+#include <LiquidCrystal_I2C.h>
 
-// initialize the library with the numbers of the interface pins
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+// Scanner shows address as 0x27 - SLG 2/23/14 2:05Am
+#define I2C_ADDR    0x27 // <<----- Add your address here.  Find it from I2C Scanner
+#define BACKLIGHT_PIN     3
+#define En_pin  255
+#define Rw_pin  12
+#define Rs_pin  11
+#define D4_pin  4
+#define D5_pin  5
+#define D6_pin  6
+#define D7_pin  7
 
-void setup() {
-  // set up the LCD's number of columns and rows: 
-  lcd.begin(20, 4);
-  // Print a message to the LCD.
-  lcd.print("hello, world!");
+int n = 1;
+
+LiquidCrystal_I2C	lcd(I2C_ADDR,En_pin,Rw_pin,Rs_pin,D4_pin,D5_pin,D6_pin,D7_pin);
+
+void setup()
+{
+  lcd.begin (20,4); //  <<----- My LCD was 16x2
+
+  
+// Switch on the backlight
+lcd.setBacklightPin(BACKLIGHT_PIN,POSITIVE);
+lcd.setBacklight(HIGH);
+lcd.home (); // go home
+
+  lcd.print("Hello World");  
 }
 
-void loop() {
-  // set the cursor to column 0, line 1
-  // (note: line 1 is the second row, since counting begins with 0):
-  lcd.setCursor(0, 1);
-  // print the number of seconds since reset:
-  lcd.print(millis()/1000);
+void loop()
+{
+  // Backlight on/off every 3 seconds
+  lcd.setCursor (0,1);        // go to start of 2nd line
+  lcd.print(n++,DEC);
+  lcd.setBacklight(LOW);      // Backlight off
+  delay(3000);
+  lcd.setBacklight(HIGH);     // Backlight on
+  delay(3000);
 }
-

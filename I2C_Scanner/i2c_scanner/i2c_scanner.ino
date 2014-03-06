@@ -34,6 +34,7 @@ void setup()
 
   Serial.begin(9600);
   Serial.println("\nI2C Scanner");
+  pinMode(13, OUTPUT);    
 }
 
 
@@ -47,11 +48,13 @@ void loop()
   nDevices = 0;
   for(address = 1; address < 127; address++ ) 
   {
+  digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
     // The i2c_scanner uses the return value of
     // the Write.endTransmisstion to see if
     // a device did acknowledge to the address.
     Wire.beginTransmission(address);
     error = Wire.endTransmission();
+    digitalWrite(13, LOW);   
 
     if (error == 0)
     {
