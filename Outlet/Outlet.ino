@@ -5,7 +5,11 @@ int b3 = 0;
 void setup() {
 
   // Source for buttons
-  digitalWrite(4, HIGH);
+  pinMode(0, OUTPUT);
+  digitalWrite(0, HIGH);
+  pinMode(1, INPUT);
+  pinMode(2, INPUT);
+  pinMode(3, INPUT);
   Serial.begin(9600);
 }
 
@@ -15,7 +19,7 @@ void loop() {
     // do nothing until pin 2 goes low
   //  delay(500);
   //}
-  b1 = digitalRead(0);
+  b1 = digitalRead(1);
   b2 = digitalRead(2);
   b3 = digitalRead(3);
   
