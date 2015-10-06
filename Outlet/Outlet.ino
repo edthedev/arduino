@@ -15,12 +15,22 @@ void loop() {
     // do nothing until pin 2 goes low
   //  delay(500);
   //}
-  b1 = digitalRead(1);
+  b1 = digitalRead(0);
   b2 = digitalRead(2);
   b3 = digitalRead(3);
   
-  Serial.print("Button 1: \n");
+  Serial.print("Button 1:");
   Serial.print(b1);
+  Serial.print("\n");
+
+  Serial.print("Button 2:");
+  Serial.print(b2);
+
+  Serial.print("\n");
+  Serial.print("Button 3:");
+
+  Serial.print(b3);
+  Serial.print("\n");
 
   /*
   if(prime)
@@ -40,6 +50,6 @@ void loop() {
     delay(900);
   }
   */
-  delay(900);
+  delay(1900);
 }
  
