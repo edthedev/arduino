@@ -1,25 +1,10 @@
-// use this option for OSX:
-// use this option for Windows and Linux:
-//  char ctrlKey = KEY_LEFT_CTRL;  
-//  You must select Keyboard from the Arduino "Tools > USB Type" menu
-//
-char EnterKey = KEY_ENTER;
-int button = 0;
-int key = 0;
-int signal = 0;
-int prime = 0;
-
-int hotPin = 14;
-int keyPin = 9;
-int buttonPin = 10;
-int ledPin = 12; // the on board Teensy LED is on pin 12.
-
 int b1 = 0;
 int b2 = 0;
 int b3 = 0;
 
 void setup() {
 
+  // Source for buttons
   digitalWrite(4, HIGH);
   Serial.begin(9600);
 }
@@ -30,21 +15,18 @@ void loop() {
     // do nothing until pin 2 goes low
   //  delay(500);
   //}
-  button = digitalRead(1);
-  key = digitalRead(keyPin);
-  signal =  !key && !button;
-  prime =  key && !button;
-  digitalWrite(ledPin, !key);
-  // digitalWrite(ledPin, signal);
+  b1 = digitalRead(1);
+  b2 = digitalRead(2);
+  b3 = digitalRead(3);
   
-  Serial.print("Button: ");
-  Serial.print(button);
-  Serial.print(" Key: ");
-  Serial.print(key);
-  Serial.println("");
+  Serial.print("Button 1: \n");
+  Serial.print(b1);
+
+  /*
   if(prime)
   {
-    Serial.print("Primed!");
+	  // pass
+    Serial.print("Triggered!");
     Keyboard.print("z");
     Keyboard.print("/");
     delay(900);
@@ -57,11 +39,7 @@ void loop() {
 	// Keyboard.press(EnterKey);
     delay(900);
   }
-  delay(100);
-  // new document:
-  //delay(100);
-  // Keyboard.releaseAll();
-  // wait for new window to open:
-  //delay(1000);
+  */
+  delay(900);
 }
  
