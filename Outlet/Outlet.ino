@@ -1,15 +1,15 @@
-int b1 = 0;
-int b2 = 0;
-int b3 = 0;
+int v1 = 0;
+int v2 = 0;
+int v3 = 0;
 
 void setup() {
 
-  // Source for buttons
   pinMode(0, OUTPUT);
-  digitalWrite(0, HIGH);
   pinMode(1, INPUT);
   pinMode(2, INPUT);
   pinMode(3, INPUT);
+
+  digitalWrite(0, HIGH);
   Serial.begin(9600);
 }
 
@@ -19,10 +19,21 @@ void loop() {
     // do nothing until pin 2 goes low
   //  delay(500);
   //}
-  b1 = digitalRead(1);
-  b2 = digitalRead(2);
-  b3 = digitalRead(3);
-  
+  // v1 = digitalRead(1);
+  v2 = digitalRead(2);
+  // v3 = digitalRead(3);
+	
+  if(v2 == HIGH)
+  {
+	  Serial.print("Pressed Button 2.\n");
+  }
+  if(v2 == LOW)
+  {
+	  Serial.print("Released Button 2.\n");
+
+  }
+
+ /* 
   Serial.print("Button 1:");
   Serial.print(b1);
   Serial.print("\n");
@@ -35,6 +46,7 @@ void loop() {
 
   Serial.print(b3);
   Serial.print("\n");
+  */
 
   /*
   if(prime)
