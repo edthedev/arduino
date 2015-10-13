@@ -1,15 +1,16 @@
 int v1 = 0;
 int v2 = 0;
 int v3 = 0;
+int on = 0;
 
 void setup() {
 
   // pinMode(0, OUTPUT);
-  pinMode(0, INPUT);
-  // pinMode(2, INPUT);
+  // pinMode(1, INPUT);
+  pinMode(2, INPUT);
   // pinMode(3, INPUT);
+  pinMode(13, OUTPUT);
 
-  // digitalWrite(0, HIGH);
   Serial.begin(9600);
 }
 
@@ -20,12 +21,16 @@ void loop() {
   //  delay(500);
   //}
   // v1 = digitalRead(1);
-  v2 = digitalRead(0);
+  v2 = digitalRead(2);
   // v3 = digitalRead(3);
 	
+
+
   if(v2 == LOW)
   {
 	  Serial.print("Pressed Button 2.\n");
+	  on = 1;
+	  digitalWrite(13, HIGH);
   }
   if(v2 == HIGH)
   {
@@ -33,39 +38,6 @@ void loop() {
 
   }
 
- /* 
-  Serial.print("Button 1:");
-  Serial.print(b1);
-  Serial.print("\n");
-
-  Serial.print("Button 2:");
-  Serial.print(b2);
-
-  Serial.print("\n");
-  Serial.print("Button 3:");
-
-  Serial.print(b3);
-  Serial.print("\n");
-  */
-
-  /*
-  if(prime)
-  {
-	  // pass
-    Serial.print("Triggered!");
-    Keyboard.print("z");
-    Keyboard.print("/");
-    delay(900);
-  }
-
-  if(signal)
-  {
-    Serial.print("RedButton!");
-    Keyboard.print("\n");
-	// Keyboard.press(EnterKey);
-    delay(900);
-  }
-  */
-  delay(1900);
+  delay(500);
 }
  
